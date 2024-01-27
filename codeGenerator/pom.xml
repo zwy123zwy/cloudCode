@@ -65,7 +65,7 @@
 <!--                    </descriptorRefs>-->
 <!--                    <archive>-->
 <!--                        <manifest>-->
-<!--                            <mainClass>com.yupi.Main</mainClass> &lt;!&ndash; 替换为你的主类的完整类名 &ndash;&gt;-->
+<!--                            <mainClass>com.example.Main</mainClass> &lt;!&ndash; 替换为你的主类的完整类名 &ndash;&gt;-->
 <!--                        </manifest>-->
 <!--                    </archive>-->
 <!--                </configuration>-->
