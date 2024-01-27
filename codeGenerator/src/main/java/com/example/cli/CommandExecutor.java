@@ -11,7 +11,7 @@ import picocli.CommandLine.Command;
 /**
  * 命令执行器
  */
-@Command(name = "yuzi", mixinStandardHelpOptions = true)
+@Command(name = "Zwy", mixinStandardHelpOptions = true)
 public class CommandExecutor implements Runnable {
 
     private final CommandLine commandLine;

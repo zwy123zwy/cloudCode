@@ -1,9 +1,10 @@
 package com.example.acm;
 
 import java.util.Scanner;
+
 /**
  * ACM 输入模板（多数之和）
- * @author Zwy
+ * @author ZWY
  */
 public class MainTemplate {
     public static void main(String[] args) {
@@ -25,7 +26,7 @@ public class MainTemplate {
                 sum += num;
             }
 
-            System.out.println("求和结果：" + sum);
+            System.out.println("QQQ" + sum);
         scanner.close();
     }
 }
