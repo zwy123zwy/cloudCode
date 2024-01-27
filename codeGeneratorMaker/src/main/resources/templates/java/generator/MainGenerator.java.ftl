@@ -1,18 +1,18 @@
 package ${basePackage}.generator;
 
-import com.yupi.model.DataModel;
+import ${basePackage}.model.DataModel;
 import freemarker.template.TemplateException;
 
 import java.io.File;
 import java.io.IOException;
 
 <#macro generateFile indent fileInfo>
-${indent}inputPath = new File(inputRootPath, "${fileInfo.inputPath}").getAbsolutePath();
-${indent}outputPath = new File(outputRootPath, "${fileInfo.outputPath}").getAbsolutePath();
+    ${indent}inputPath = new File(inputRootPath, "${fileInfo.inputPath}").getAbsolutePath();
+    ${indent}outputPath = new File(outputRootPath, "${fileInfo.outputPath}").getAbsolutePath();
 <#if fileInfo.generateType == "static">
-${indent}StaticGenerator.copyFilesByHutool(inputPath, outputPath);
+    ${indent}StaticGenerator.copyFilesByHutool(inputPath, outputPath);
 <#else>
-${indent}DynamicGenerator.doGenerate(inputPath, outputPath, model);
+    ${indent}DynamicGenerator.doGenerate(inputPath, outputPath, model);
 </#if>
 </#macro>
 
@@ -39,11 +39,11 @@ public class MainGenerator {
     <#list modelConfig.models as modelInfo>
         <#-- 有分组 -->
         <#if modelInfo.groupKey??>
-        <#list modelInfo.models as subModelInfo>
-        ${subModelInfo.type} ${subModelInfo.fieldName} = model.${modelInfo.groupKey}.${subModelInfo.fieldName};
-        </#list>
+            <#list modelInfo.models as subModelInfo>
+                ${subModelInfo.type} ${subModelInfo.fieldName} = model.${modelInfo.groupKey}.${subModelInfo.fieldName};
+            </#list>
         <#else>
-        ${modelInfo.type} ${modelInfo.fieldName} = model.${modelInfo.fieldName};
+            ${modelInfo.type} ${modelInfo.fieldName} = model.${modelInfo.fieldName};
         </#if>
     </#list>
 
@@ -53,12 +53,12 @@ public class MainGenerator {
         <#if fileInfo.condition??>
         if (${fileInfo.condition}) {
             <#list fileInfo.files as fileInfo>
-            <@generateFile fileInfo=fileInfo indent="            " />
+                <@generateFile fileInfo=fileInfo indent="            " />
             </#list>
         }
         <#else>
-        <#list fileInfo.files as fileInfo>
-        <@generateFile fileInfo=fileInfo indent="        " />
+            <#list fileInfo.files as fileInfo>
+            <@generateFile fileInfo=fileInfo indent="        " />
         </#list>
         </#if>
         <#else>

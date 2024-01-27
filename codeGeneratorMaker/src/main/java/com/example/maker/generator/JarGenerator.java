@@ -2,7 +2,7 @@ package com.example.maker.generator;
 
 import java.io.*;
 import java.util.Map;
-
+// 生成jar包的方法，必须要有maven 仓库
 public class  JarGenerator {
 
     public static void doGenerate(String projectDir) throws IOException, InterruptedException {
@@ -10,10 +10,11 @@ public class  JarGenerator {
         // 注意不同操作系统，执行的命令不同
         String winMavenCommand = "mvn.cmd clean package -DskipTests=true";
         String otherMavenCommand = "mvn clean package -DskipTests=true";
-        String mavenCommand = otherMavenCommand;
+        String mavenCommand = winMavenCommand;
 
         // 这里一定要拆分！
         ProcessBuilder processBuilder = new ProcessBuilder(mavenCommand.split(" "));
+        //指定路径
         processBuilder.directory(new File(projectDir));
         Map<String, String> environment = processBuilder.environment();
         System.out.println(environment);
@@ -31,8 +32,8 @@ public class  JarGenerator {
         int exitCode = process.waitFor();
         System.out.println("命令执行结束，退出码：" + exitCode);
     }
-
+//测试代码
     public static void main(String[] args) throws IOException, InterruptedException {
-        doGenerate("C:\\code\\yuzi-generator\\yuzi-generator-maker\\generated\\acm-template-pro-generator");
+        doGenerate("C:\\Users\\Zhangwenye\\Desktop\\lowCode\\codeGeneratorMaker\\generated");
     }
 }

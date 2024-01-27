@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Set;
-
+// 脚本文件生成器
 public class ScriptGenerator {
 
     public static void doGenerate(String outputPath, String jarPath) throws IOException {
