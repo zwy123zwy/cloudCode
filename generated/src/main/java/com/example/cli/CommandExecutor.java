@@ -1,17 +1,17 @@
-package ${basePackage}.cli;
+package com.example.cli;
 
-import ${basePackage}.cli.command.ConfigCommand;
-import ${basePackage}.cli.command.GenerateCommand;
-import ${basePackage}.cli.command.ListCommand;
+import com.example.cli.command.ConfigCommand;
+import com.example.cli.command.GenerateCommand;
+import com.example.cli.command.ListCommand;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 /**
-* @author ${author}
+* @author Zwy
 *
 * @description 绑定所有子命令
 */
-@Command(name = "${name}", mixinStandardHelpOptions = true, version = "1.0")
+@Command(name = "acm-template-pro-generator", mixinStandardHelpOptions = true, version = "1.0")
 public class CommandExecutor implements Runnable {
 
     private final CommandLine commandLine;

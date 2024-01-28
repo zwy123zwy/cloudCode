@@ -3,13 +3,14 @@ package com.example.maker.meta;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.List;
+
 // 用于解析meta JSON 的实体类
 @NoArgsConstructor
 @Data
 public class Meta {
-//一级内容
+
     private String name;
     private String description;
     private String basePackage;
@@ -18,51 +19,39 @@ public class Meta {
     private String createTime;
     private FileConfig fileConfig;
     private ModelConfig modelConfig;
-//二级内容
+
     @NoArgsConstructor
     @Data
-    public static class FileConfig implements Serializable {
+    public static class FileConfig {
         private String inputRootPath;
         private String outputRootPath;
-        private String sourceRootPath;
         private String type;
         private List<FileInfo> files;
-//三级内容
+
         @NoArgsConstructor
         @Data
-        public static class FileInfo implements Serializable {
+        public static class FileInfo {
             private String inputPath;
             private String outputPath;
+            private String sourceRootPath;
             private String type;
             private String generateType;
-            private String condition;
-            private String groupKey;
-            private String groupName;
-            private List<FileInfo> files;
         }
     }
-//二级内容
+
     @NoArgsConstructor
     @Data
-    public static class ModelConfig implements Serializable {
+    public static class ModelConfig {
         private List<ModelInfo> models;
-// 三级内容
+
         @NoArgsConstructor
         @Data
-        public static class ModelInfo implements Serializable {
+        public static class ModelInfo {
             private String fieldName;
             private String type;
             private String description;
             private Object defaultValue;
             private String abbr;
-            private String groupKey;
-            private String groupName;
-            private List<ModelInfo> models;
-            private String condition;
-
-            // 中间参数
-            // 该分组下所有参数拼接字符串
-            private String allArgsStr;
         }
     }
 }
