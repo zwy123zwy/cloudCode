@@ -10,6 +10,8 @@ public class  JarGenerator {
         // 注意不同操作系统，执行的命令不同
         String winMavenCommand = "mvn.cmd clean package -DskipTests=true";
         String otherMavenCommand = "mvn clean package -DskipTests=true";
+        // 必须使用windows下的命令
+        // todo 如果上线这边的命令可能需要发生改变，这里需要突出注意
         String mavenCommand = winMavenCommand;
 
         // 这里一定要拆分！
@@ -18,10 +20,12 @@ public class  JarGenerator {
         processBuilder.directory(new File(projectDir));
         Map<String, String> environment = processBuilder.environment();
         System.out.println(environment);
+        // 打开这个终端 并执行相关的命令
         Process process = processBuilder.start();
 
         // 读取命令的输出
         InputStream inputStream = process.getInputStream();
+        //缓存读取器
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         while ((line = reader.readLine()) != null) {

@@ -1,9 +1,5 @@
-com\example\Main.class
 com\example\cli\command\ListCommand.class
-com\example\generator\DynamicGenerator.class
-com\example\generator\StaticGenerator.class
-com\example\cli\CommandExecutor.class
-com\example\generator\MainGenerator.class
+com\example\Main.class
+com\example\model\DataModel$MainTemplate.class
 com\example\cli\command\ConfigCommand.class
 com\example\model\DataModel.class
-com\example\cli\command\GenerateCommand.class

@@ -1,7 +1,6 @@
 package com.example.cli;
 
 import com.example.cli.command.ConfigCommand;
-import com.example.cli.command.GenerateCommand;
 import com.example.cli.command.ListCommand;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;

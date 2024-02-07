@@ -11,7 +11,7 @@ public class ListCommand implements Runnable {
 
     public void run() {
         // 输入路径 为实体类的fileConfig属性的配置信息，输入项目模板的根路径
-        String inputPath = "C:/Users/Zhangwenye/Desktop/lowCode/demoProjects/acm-template-pro";
+        String inputPath = ".source/acm-template-pro";
         List<File> files = FileUtil.loopFiles(inputPath);
         for (File file : files) {
             System.out.println(file);

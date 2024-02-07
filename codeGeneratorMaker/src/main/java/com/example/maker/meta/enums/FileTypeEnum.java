@@ -1,5 +1,5 @@
 package com.example.maker.meta.enums;
-
+// 用于存放元信息相关的枚举类
 public enum FileTypeEnum {
 
     DIR("目录", "dir"),
