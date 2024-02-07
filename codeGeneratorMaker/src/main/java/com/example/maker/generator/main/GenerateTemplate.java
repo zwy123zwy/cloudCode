@@ -14,7 +14,7 @@ import freemarker.template.TemplateException;
 
 import java.io.File;
 import java.io.IOException;
-// 模板生成器，maingenertor的精简版
+// 模板生成器，maingenertor的精简版,该抽象类是对之前卸载最外面的Main.java文件的继承
 public abstract class GenerateTemplate {
 
     public void doGenerate() throws TemplateException, IOException, InterruptedException {
@@ -54,7 +54,7 @@ public abstract class GenerateTemplate {
 
 
     /**
-     * 复制原始文件
+     * 复制原始文件 也即不是ftl的文件
      *
      * @param meta
      * @param outputPath

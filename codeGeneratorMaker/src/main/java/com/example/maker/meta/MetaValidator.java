@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 元信息校验
+ * 元信息校验,用以保证代码的健壮性
  */
 public class MetaValidator {
 

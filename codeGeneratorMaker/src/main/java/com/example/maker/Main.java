@@ -38,6 +38,7 @@ public class Main {
 //        System.out.println(resource.toString());
 //        System.out.println(resource.getAbsolutePath());
 //        System.out.println(resource.getPath().toString());
+//        String inputResourcePath =resource.getAbsolutePath();
         String inputResourcePath = resource.getPath();
 
         System.out.println(inputResourcePath);
