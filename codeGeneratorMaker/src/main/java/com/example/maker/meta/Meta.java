@@ -3,6 +3,7 @@ package com.example.maker.meta;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Meta {
 
     @NoArgsConstructor
     @Data
-    public static class FileConfig {
+    public static class FileConfig implements Serializable{
         private String inputRootPath;
         private String outputRootPath;
         private String sourceRootPath;
@@ -32,7 +33,7 @@ public class Meta {
 
         @NoArgsConstructor
         @Data
-        public static class FileInfo {
+        public static class FileInfo implements Serializable{
             private String inputPath;
             private String outputPath;
             private String type;
@@ -46,12 +47,12 @@ public class Meta {
 
     @NoArgsConstructor
     @Data
-    public static class ModelConfig {
+    public static class ModelConfig implements Serializable{
         private List<ModelInfo> models;
 
-        @NoArgsConstructor
         @Data
-        public static class ModelInfo {
+        @NoArgsConstructor
+        public static class ModelInfo implements Serializable {
             private String fieldName;
             private String type;
             private String description;

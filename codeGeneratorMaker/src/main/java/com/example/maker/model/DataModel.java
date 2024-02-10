@@ -16,7 +16,7 @@ public class DataModel {
      */
     private boolean loop;
     /*
-    用于生成核心模板文件
+    用于生成核心模板文件 内部封装类
     *
     */
     public MainTemplate mainTemplate=new MainTemplate();

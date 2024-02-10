@@ -4,7 +4,7 @@ import freemarker.template.TemplateException;
 
 import java.io.File;
 import java.io.IOException;
-
+<#--宏定义 <#macro 宏定义方法名 参数1 参数2>-->
 <#--indent为代码的空格 fileInfo为传入的参数-->
 <#macro generateFile indent fileInfo>
     ${indent}inputPath = new File(inputRootPath, "${fileInfo.inputPath}").getAbsolutePath();
@@ -40,38 +40,40 @@ public static void doGenerate(Object model) throws IOException, TemplateExceptio
         <#list modelConfig.models as modelInfo>
         <#-- 有分组 -->
         <#if modelInfo.groupKey??>
-        <#list modelInfo.models as subModelInfo>
-        ${subModelInfo.type} ${subModelInfo.fieldName} = model.${modelInfo.groupKey}.${subModelInfo.fieldName};
+                <#list modelInfo.models as subModelInfo>
+                ${subModelInfo.type} ${subModelInfo.fieldName} = model.${modelInfo.groupKey}.${subModelInfo.fieldName};
                 </#list>
             <#else>
                 ${modelInfo.type} ${modelInfo.fieldName} = model.${modelInfo.fieldName};
-            </#if>
+        </#if>
         </#list>
 
         <#list fileConfig.files as fileInfo>
+            <#--如果有组的条件   -->
             <#if fileInfo.groupKey??>
                 // groupKey = ${fileInfo.groupKey}
-                <#if fileInfo.condition??>
-                    if (${fileInfo.condition}) {
-                    <#list fileInfo.files as fileInfo>
-                         <#--重复的代码逻辑-->
+            <#if fileInfo.condition??>
+            if (${fileInfo.condition}) {
+                <#list fileInfo.files as fileInfo>
+                         <#--重复的代码逻辑 使用宏定义-->
                          <#--indent指定代码的缩进长度，传入fileInfo参数-->
-                        <@generateFile fileInfo=fileInfo indent="            " />
-                    </#list>
-                    }
-                <#else>
-                    <#list fileInfo.files as fileInfo>
-                        <@generateFile fileInfo=fileInfo indent="        " />
-                    </#list>
-                </#if>
-            <#else>
-                <#if fileInfo.condition??>
-                    if(${fileInfo.condition}) {
                     <@generateFile fileInfo=fileInfo indent="            " />
-                    }
-                <#else>
+                </#list>
+            }
+            <#else>
+                <#list fileInfo.files as fileInfo>
                     <@generateFile fileInfo=fileInfo indent="        " />
-                </#if>
+                </#list>
+            </#if>
+
+            <#else>
+            <#if fileInfo.condition??>
+                if(${fileInfo.condition}) {
+                    <@generateFile fileInfo=fileInfo indent="            " />
+                }
+            <#else>
+                <@generateFile fileInfo=fileInfo indent="        " />
+            </#if>
             </#if>
         </#list>
     }

@@ -38,8 +38,9 @@ public class MetaValidator {
             // 为 group，不校验
             String groupKey = modelInfo.getGroupKey();
             if (StrUtil.isNotEmpty(groupKey)) {
-                // 生成中间参数
+                // 生成中间参数  也就是model数组中的对象
                 List<Meta.ModelConfig.ModelInfo> subModelInfoList = modelInfo.getModels();
+                // todo 这里验证的代码不太对，存在浪费
                 String allArgsStr = modelInfo.getModels().stream()
                         .map(subModelInfo -> String.format("\"--%s\"", subModelInfo.getFieldName()))
                         .collect(Collectors.joining(", "));

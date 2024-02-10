@@ -1,0 +1,93 @@
+package com.example.maker.template;
+
+import cn.hutool.core.io.FileUtil;
+import com.example.maker.meta.Meta;
+import com.example.maker.template.enums.FileFilterRangeEnum;
+import com.example.maker.template.enums.FileFilterRuleEnum;
+import com.example.maker.template.model.FileFilterConfig;
+import com.example.maker.template.model.TemplateMakerFileConfig;
+import com.example.maker.template.model.TemplateMakerModelConfig;
+import org.junit.Test;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+public class TemplateMakerTest {
+
+    @Test
+    public void makeTemplate1() {
+        String name="acm-template-generator";
+        String description="ACM 示例模板生成器";
+        Meta meta = new Meta() ;
+        meta.setName(name);
+        meta.setDescription(description);
+        String projectPath=System.getProperty("user.dir");
+        String originProjectPath= FileUtil.getAbsolutePath(new File(projectPath).getParent()+ File.separator+"demoProjects/springboot-init");
+//        String fileInputPath1="src/main/resources/application.yml";
+        String fileInputPath1="src/main/java/com/example/springbootinit/common";
+        String fileInputPath2="src/main/java/com/example/springbootinit/constant";
+        String fileInputPath3="src/main/java/com/example/springbootinit/controller";
+        String fileInputPath4="src/main/resources/application.yml";
+
+
+
+//        Meta.ModelConfig.ModelInfo modelInfo = new Meta.ModelConfig.ModelInfo();
+//        modelInfo.setFieldName("className");
+//        modelInfo.setType("String");
+//        String searchStr="BaseResponse";
+        // 文件分组
+        TemplateMakerFileConfig.FileInfoConfig fileInfoConfig1 = new TemplateMakerFileConfig.FileInfoConfig();
+        fileInfoConfig1.setPath(fileInputPath1);
+        //文件过滤配置
+//        List<FileFilterConfig> fileFilterConfigList = new ArrayList<>();
+//        FileFilterConfig fileFilterConfig = FileFilterConfig.builder()
+//                .range(FileFilterRangeEnum.FILE_NAME.getValue())
+//                .rule(FileFilterRuleEnum.CONTAINS.getValue())
+//                .value("Base")
+//                .build();
+//        fileFilterConfigList.add(fileFilterConfig);
+//        fileInfoConfig1.setFilterConfigList(fileFilterConfigList);
+
+        TemplateMakerFileConfig.FileInfoConfig fileInfoConfig2 = new TemplateMakerFileConfig.FileInfoConfig();
+        fileInfoConfig2.setPath(fileInputPath2);
+        TemplateMakerFileConfig.FileInfoConfig fileInfoConfig3 = new TemplateMakerFileConfig.FileInfoConfig();
+        fileInfoConfig3.setPath(fileInputPath3);
+
+        TemplateMakerFileConfig templateMakerFileConfig = new TemplateMakerFileConfig();
+        // 在分组是变成了下级的file
+        templateMakerFileConfig.setFiles(Arrays.asList(fileInfoConfig1));
+
+
+//        TemplateMakerFileConfig.FileGroupConfig fileGroupConfig = new TemplateMakerFileConfig.FileGroupConfig();
+//        fileGroupConfig.setCondition("output===");
+//        fileGroupConfig.setGroupName("测试分组2");
+//        fileGroupConfig.setGroupKey("dssd顶顶顶");
+//        templateMakerFileConfig.setFileGroupConfig(fileGroupConfig);
+
+        TemplateMakerModelConfig templateMakerModelConfig = new TemplateMakerModelConfig();
+        // 模型分组配置
+//        TemplateMakerModelConfig.ModelGroupConfig modelGroupConfig = new TemplateMakerModelConfig.ModelGroupConfig();
+//        modelGroupConfig.setGroupKey("mysql");
+//        modelGroupConfig.setGroupName("数据库配置");
+//        templateMakerModelConfig.setModelGroupConfig(modelGroupConfig);
+        // 具体字段的配置信息
+        TemplateMakerModelConfig.ModelInfoConfig modelInfoConfig1 = new TemplateMakerModelConfig.ModelInfoConfig();
+
+        modelInfoConfig1.setFieldName("className");
+        modelInfoConfig1.setType("String");
+//        modelInfoConfig1.setDefaultValue("jdbc:mysql://localhost:3306/my_db");
+        modelInfoConfig1.setReplaceText("BaseResponse");
+
+//        TemplateMakerModelConfig.ModelInfoConfig modelInfoConfig2 = new TemplateMakerModelConfig.ModelInfoConfig();
+//        modelInfoConfig2.setFieldName( "username");
+//        modelInfoConfig2.setType("string");
+//        modelInfoConfig2.setDefaultValue("root");
+//        modelInfoConfig2.setReplaceText("root");
+        templateMakerModelConfig.setModels(Arrays.asList(modelInfoConfig1));
+        TemplateMaker.makeTemplate1(meta, originProjectPath,templateMakerFileConfig,templateMakerModelConfig,2L);
+    }
+}

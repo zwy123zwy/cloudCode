@@ -1,7 +1,7 @@
 package com.example.maker.meta.enums;
 
 /**
- * 文件生成类型枚举
+ * 文件生成类型枚举，提高代码的可扩展性
  */
 public enum FileGenerateTypeEnum {
 

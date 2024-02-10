@@ -1,7 +1,7 @@
 package ${basePackage}.model;
 
 import lombok.Data;
-
+<#--宏定义-->
 <#macro generateModel indent modelInfo>
 <#if modelInfo.description??>
 ${indent}/**
