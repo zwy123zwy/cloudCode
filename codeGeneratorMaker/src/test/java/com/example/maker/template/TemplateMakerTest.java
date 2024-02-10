@@ -1,10 +1,13 @@
 package com.example.maker.template;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.resource.ResourceUtil;
+import cn.hutool.json.JSONUtil;
 import com.example.maker.meta.Meta;
 import com.example.maker.template.enums.FileFilterRangeEnum;
 import com.example.maker.template.enums.FileFilterRuleEnum;
 import com.example.maker.template.model.FileFilterConfig;
+import com.example.maker.template.model.TemplateMakerConfig;
 import com.example.maker.template.model.TemplateMakerFileConfig;
 import com.example.maker.template.model.TemplateMakerModelConfig;
 import org.junit.Test;
@@ -88,6 +91,20 @@ public class TemplateMakerTest {
 //        modelInfoConfig2.setDefaultValue("root");
 //        modelInfoConfig2.setReplaceText("root");
         templateMakerModelConfig.setModels(Arrays.asList(modelInfoConfig1));
-        TemplateMaker.makeTemplate1(meta, originProjectPath,templateMakerFileConfig,templateMakerModelConfig,2L);
+        TemplateMaker.makeTemplate(meta, originProjectPath,templateMakerFileConfig,templateMakerModelConfig,2L);
+    }
+    @Test
+    public void test(){
+        String rootPath="examples/springboot-init/";
+        String configStr= ResourceUtil.readUtf8Str(rootPath+"templateMaker.json");
+        TemplateMakerConfig templateMakerConfig = JSONUtil.toBean(configStr, TemplateMakerConfig.class);
+        Long id = TemplateMaker.makeTemplate(templateMakerConfig);
+        //用户不断追加信息编辑
+        configStr = ResourceUtil.readUtf8Str(rootPath + "templateMaker1.json");
+        templateMakerConfig = JSONUtil.toBean(configStr, TemplateMakerConfig.class);
+        TemplateMaker.makeTemplate(templateMakerConfig);
+        System.out.println(id);
+
+
     }
 }
