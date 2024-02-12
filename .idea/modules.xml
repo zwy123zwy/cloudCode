@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/lowCode.iml" filepath="$PROJECT_DIR$/lowCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Code_Generator.iml" filepath="$PROJECT_DIR$/Code_Generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Code_Generator_Maker.iml" filepath="$PROJECT_DIR$/Code_Generator_Maker.iml" />
     </modules>
   </component>
 </project>

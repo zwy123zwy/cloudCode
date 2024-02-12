@@ -27,7 +27,7 @@ public class DynamicFileGenerator {
      */
     public static void doGenerate(String relativeInputPath, String outputPath, Object model) throws IOException, TemplateException {
         // new 出 Configuration 对象，参数为 FreeMarker 版本号
-        Configuration configuration = new Configuration(Configuration.VERSION_2_3_32);;
+        Configuration configuration = new Configuration(Configuration.VERSION_2_3_32);
 
         // 获取模板文件所属包和模板名称
         int lastSplitIndex = relativeInputPath.lastIndexOf("/");
@@ -53,14 +53,14 @@ public class DynamicFileGenerator {
         Writer out = new FileWriter(outputPath);
         template.process(model, out);
 
-        // 生成文件后别忘了关闭哦
+        // 生成文件后关闭
         out.close();
     }
 
     /**
      * 生成文件
      *
-     * @param inputPath 模板文件输入路径
+     * @param inputPath 模板文件输入路径（绝对路径）
      * @param outputPath 输出路径
      * @param model 数据模型
      * @throws IOException
@@ -72,6 +72,7 @@ public class DynamicFileGenerator {
 
         // 指定模板文件所在的路径
         File templateDir = new File(inputPath).getParentFile();
+
         configuration.setDirectoryForTemplateLoading(templateDir);
 
         // 设置模板文件使用的字符集

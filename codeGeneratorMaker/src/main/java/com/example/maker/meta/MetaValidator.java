@@ -8,13 +8,12 @@ import com.example.maker.meta.enums.FileGenerateTypeEnum;
 import com.example.maker.meta.enums.FileTypeEnum;
 import com.example.maker.meta.enums.ModelTypeEnum;
 
-import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 元信息校验,用以保证代码的健壮性
+ * 元信息校验
  */
 public class MetaValidator {
 
@@ -38,9 +37,8 @@ public class MetaValidator {
             // 为 group，不校验
             String groupKey = modelInfo.getGroupKey();
             if (StrUtil.isNotEmpty(groupKey)) {
-                // 生成中间参数  也就是model数组中的对象
+                // 生成中间参数
                 List<Meta.ModelConfig.ModelInfo> subModelInfoList = modelInfo.getModels();
-                // todo 这里验证的代码不太对，存在浪费
                 String allArgsStr = modelInfo.getModels().stream()
                         .map(subModelInfo -> String.format("\"--%s\"", subModelInfo.getFieldName()))
                         .collect(Collectors.joining(", "));
@@ -62,12 +60,12 @@ public class MetaValidator {
     }
 
     public static void validAndFillFileConfig(Meta meta) {
-        // fileConfig 默认值 一级目录
+        // fileConfig 默认值
         Meta.FileConfig fileConfig = meta.getFileConfig();
         if (fileConfig == null) {
             return;
         }
-        // sourceRootPath：必填 模板文件根目录
+        // sourceRootPath：必填
         String sourceRootPath = fileConfig.getSourceRootPath();
         if (StrUtil.isBlank(sourceRootPath)) {
             throw new MetaException("未填写 sourceRootPath");
@@ -84,9 +82,7 @@ public class MetaValidator {
         if (StrUtil.isEmpty(outputRootPath)) {
             fileConfig.setOutputRootPath(defaultOutputRootPath);
         }
-
         String fileConfigType = fileConfig.getType();
-//       文件类型分组 此处代表目录，默认为目录
         String defaultType = FileTypeEnum.DIR.getValue();
         if (StrUtil.isEmpty(fileConfigType)) {
             fileConfig.setType(defaultType);
@@ -103,7 +99,7 @@ public class MetaValidator {
             if (FileTypeEnum.GROUP.getValue().equals(type)) {
                 continue;
             }
-            // inputPath: 必填，此处路径与sourceRootPath相拼接
+            // inputPath: 必填
             String inputPath = fileInfo.getInputPath();
             if (StrUtil.isBlank(inputPath)) {
                 throw new MetaException("未填写 inputPath");

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>codeGeneratorMaker</artifactId>
+    <artifactId>Code_Generator_Maker</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -51,12 +51,6 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.16</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

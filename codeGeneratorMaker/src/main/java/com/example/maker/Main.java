@@ -1,22 +1,17 @@
 package com.example.maker;
 
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.resource.ClassPathResource;
-import cn.hutool.core.util.StrUtil;
-import com.example.maker.generator.JarGenerator;
-import com.example.maker.generator.ScriptGenerator;
-import com.example.maker.generator.file.DynamicFileGenerator;
-
-import com.example.maker.meta.Meta;
-import com.example.maker.meta.MetaManager;
+import com.example.maker.generator.main.MainGenerator;
 import freemarker.template.TemplateException;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) throws TemplateException, IOException, InterruptedException {
+        MainGenerator generator = new MainGenerator();
+        generator.doGenerate();
+//        CommandExecutor commandExecutor = new CommandExecutor();
+//        args = new String[]{"generate"，"-["};commandExecutor.doExecute(args);
 //        CommandExecutor executor = new CommandExecutor()
 
         //        //这里获取metaJson生成的唯一实例对象
@@ -103,17 +98,17 @@ public class Main {
 //        DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
 //
 //        // generator StaticGenerator
-//        inputFilePath = inputResourcePath + File.separator + "templates/java/generator" + File.separator + "StaticGenerator.java.ftl";
+//        inputFilePath = inputResourcePath + File.separator + "templates/java/generator" + File.separator + "StaticFileGenerator.java.ftl";
 //        outputFilePath = outputBaseJavaPackagePath + File.separator + "/generator/StaticGenerator.java";
 //        DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
 //
 //        // generator DynamicGenerator
-//        inputFilePath = inputResourcePath + File.separator + "templates/java/generator" + File.separator + "DynamicGenerator.java.ftl";
+//        inputFilePath = inputResourcePath + File.separator + "templates/java/generator" + File.separator + "DynamicFileGenerator.java.ftl";
 //        outputFilePath = outputBaseJavaPackagePath + File.separator + "/generator/DynamicGenerator.java";
 //        DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
 //
 //        // generator MainGenerator
-//        inputFilePath = inputResourcePath + File.separator + "templates/java/generator" + File.separator + "MainGenerator.java.ftl";
+//        inputFilePath = inputResourcePath + File.separator + "templates/java/generator" + File.separator + "FileGenerator.java.ftl";
 //        outputFilePath = outputBaseJavaPackagePath + File.separator + "/generator/MainGenerator.java";
 //        DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
 //

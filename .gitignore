@@ -1,7 +1,16 @@
+# My Custom
+
+generated
+.idea
+.temp
+application-local.yml
+target
+lowCode.iml
+
 ### Java template
 # Compiled class file
 *.class
-lowCode.iml
+
 # Log file
 *.log
 
